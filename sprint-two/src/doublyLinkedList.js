@@ -18,45 +18,46 @@ var DoublyLinkedList = function() {
       list.tail = node;
       list.tail.prev = prevNode;
     }   
-  }
+  };
   
   list.removeHead = function() {
     var nextNode = list.head.next;
     var prevHead = list.head.value;
     list.head = nextNode;
     return prevHead;
-  }
+  };
   
   list.contains = function(target) {
-    console.log(list)
     var result = false;
     var recurseList = function(node, target) {
       if (node.value === target) {
         result = true;
       } else {
         if (node.next !== null) {
-          if (recurseList(node.next, target)) {
-            result = true;
-          };
+          recurseList(node.next, target); 
         }
       }
-    }
+    };
     recurseList(list.head, target);
-    return false;
-  }
+    return result;
+  };
   
   list.addToHead = function(value) {
-    
-    
-  }
+    var node = Node(value);
+    node.next = list.head;
+    list.head.prev = node;
+    list.head = node;
+  };
   
   list.removeTail = function() {
-    
-    
-  }
+    var prevTail = list.tail.value;
+    list.tail.prev.next = null;
+    list.tail = list.tail.prev;
+    return prevTail;
+  };
   return list;
   
-}
+};
 
 var Node = function(value) {
   var node = {};
@@ -66,4 +67,4 @@ var Node = function(value) {
   node.prev = null;
   
   return node;
-}
+};

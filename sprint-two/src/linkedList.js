@@ -23,13 +23,14 @@ var LinkedList = function() {
 
   list.contains = function(target) {
     var result = false;
-    for (var key in list) {
-      if (typeof key !== 'function') {
-        if (list[key].value === target) {
-          result = true;  
-        }
+    var recursive = function(node, target) {
+      if (node.value === target) {
+        result = true;
+      } else if (node.next !== null) {
+        recursive(node.next, target);
       }
-    }
+    };
+    recursive(list.head, target);
     return result;
   };
   return list;
