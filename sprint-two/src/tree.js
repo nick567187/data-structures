@@ -34,6 +34,10 @@ treeMethods.contains = function(target) {
   return result;
 };
 
+treeMethods.traverse = function(cb) {
+  
+};
+
 
 
 /*

@@ -15,7 +15,7 @@ Graph.prototype.addNode = function(node) {
 
 // Return a boolean value indicating if the value passed to contains is represented in the graph.
 Graph.prototype.contains = function(node) {
-  return this.hasOwnProperty(node)
+  return this.hasOwnProperty(node);
 };
 // Removes a node from the graph.
 Graph.prototype.removeNode = function(node) {
@@ -33,7 +33,7 @@ Graph.prototype.hasEdge = function(fromNode, toNode) {
   for (var i = 0; i < this[fromNode].edges.length; i++) {
     var edge = this[fromNode].edges[i];
     if (edge === toNode) {
-      return true
+      return true;
     }
   }
   return false;
@@ -63,7 +63,7 @@ Graph.prototype.removeEdge = function(fromNode, toNode) {
 
 // Pass in a callback which will be executed on each node of the graph.
 Graph.prototype.forEachNode = function(cb) {
-  for(var key in this) {
+  for (var key in this) {
     if (typeof this[key] !== 'function') {
       cb(this[key].value);
     }

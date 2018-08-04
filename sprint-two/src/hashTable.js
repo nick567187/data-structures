@@ -6,8 +6,8 @@ var HashTable = function() {
 };
 
 HashTable.prototype.insert = function(k, v) {
-  console.log('counter', this._counter)
-  console.log('resize', this._resize)
+  console.log('counter', this._counter);
+  console.log('resize', this._resize);
   this._counter++;
   var index = getIndexBelowMaxForKey(k, this._limit);
   var node = [];
