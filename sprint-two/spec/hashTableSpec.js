@@ -54,10 +54,10 @@ describe('hashTable', function() {
     _.each(people, function(person) {
       var firstName = person[0];
       var lastName = person[1];
-      console.log('before', hashTable._currentSize);
-      console.log(firstName);
+      // console.log('before', hashTable._currentSize);
+      // console.log(firstName);
       hashTable.insert(firstName, lastName);
-      console.log('after insert', hashTable._currentSize);
+      // console.log('after insert', hashTable._currentSize);
       expect(hashTable.retrieve(firstName)).to.equal(lastName);
     });
     expect(hashTable._limit).to.equal(16);

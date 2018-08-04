@@ -38,6 +38,20 @@ treeMethods.traverse = function(cb) {
   
 };
 
+treeMethods.breadthFirstLog = function() {
+  var kids = this.children.slice();
+  var i = 0;
+  var len = kids.length;
+  while (i < len) {
+    if (kids[i].children.length > 0) {
+      kids.push(...kids[i].children);
+      len = kids.length;
+    }
+    console.log(kids[i]);
+    i++;
+  }
+};
+
 
 
 /*
