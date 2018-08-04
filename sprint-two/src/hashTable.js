@@ -2,13 +2,9 @@ var HashTable = function() {
   this._limit = 8;
   this._storage = LimitedArray(this._limit);
   this._counter = 0;
-  this._resize = false;
 };
 
 HashTable.prototype.insert = function(k, v) {
-  console.log('counter', this._counter)
-  console.log('resize', this._resize)
-  this._counter++;
   var index = getIndexBelowMaxForKey(k, this._limit);
   var node = [];
   if (this._storage.get(index) !== undefined) {
@@ -20,31 +16,30 @@ HashTable.prototype.insert = function(k, v) {
         inside[1] = v;
         changed = true;
       }
-    } 
+    }
     if (changed === false) {
-      // this._counter++;
+      this._counter++;
       arr.push([k, v]);
     }
   } else {
+    this._counter++;
     node.push([k, v]);
-    this._storage.set(index, node); 
-  } 
+    this._storage.set(index, node);
+  }
   if (!this._resize) {
     // console.log('counter', this._counter);
     this._resize = true;
-    if (this._counter >= this._limit * .75) {
-      console.log('up');
+    if (this._counter >= this._limit * 0.75) {
+      console.log("up");
       let newLimit = this._limit * 2;
       this.resize(newLimit);
     }
-    if (this._counter <= this._limit * .25) {
-      console.log('down');
+    if (this._counter <= this._limit * 0.25) {
+      console.log("down");
       let newLimit = this._limit / 2;
       this.resize(newLimit);
     }
   }
-  
-  
 };
 // HashTable.prototype.reInsert = function(k, v) {
 //   var index = getIndexBelowMaxForKey(k, this._limit);
@@ -58,14 +53,14 @@ HashTable.prototype.insert = function(k, v) {
 //         inside[1] = v;
 //         changed = true;
 //       }
-//     } 
+//     }
 //     if (changed === false) {
 //       arr.push([k, v]);
 //     }
 //   } else {
 //     node.push([k, v]);
 //     this._counter++;
-//     this._storage.set(index, node); 
+//     this._storage.set(index, node);
 //   }
 // };
 
@@ -91,8 +86,8 @@ HashTable.prototype.remove = function(k) {
     }
   }
   if (!this._resize) {
-    if (this._counter <= this._limit * .25) {
-      console.log('down');
+    if (this._counter <= this._limit * 0.25) {
+      console.log("down");
       let newLimit = this._limit / 2;
       this.resize(newLimit);
     }
@@ -101,7 +96,7 @@ HashTable.prototype.remove = function(k) {
 
 HashTable.prototype.resize = function(newLimit) {
   var oldStorage = this._storage;
- 
+
   // this._counter = 0;
   var values = [];
   for (let i = 0; i < this._limit; i++) {
@@ -109,7 +104,7 @@ HashTable.prototype.resize = function(newLimit) {
   }
   this._limit = newLimit;
   this._storage = LimitedArray(this._limit);
-  console.log('limit', this._limit)
+  console.log("limit", this._limit);
   for (let i = 0; i < values.length; i++) {
     var val = values[i];
     if (val !== undefined) {
@@ -144,7 +139,7 @@ HashTable.prototype.resize = function(newLimit) {
   //       }
   //     }
   //   }
-  //   this._resize = false;   
+  //   this._resize = false;
   // } else if (this._counter <= this._limit * .25 ) {
   //   console.log('downdowndown');
   //   var oldLimit = this._limit;
@@ -167,17 +162,10 @@ HashTable.prototype.resize = function(newLimit) {
   //       }
   //     }
   //   }
-  //   this._resize = false;  
+  //   this._resize = false;
   // }
-  
 };
-
-
-
-
 
 /*
  * Complexity: What is the time complexity of the above functions?
  */
-
-
